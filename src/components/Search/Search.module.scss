@@ -1,0 +1,24 @@
+.searchOptions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.searchLabel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.searchInput {
+  width: 60%;
+}
+
+.searchSelect {
+  width: 300px;
+}
