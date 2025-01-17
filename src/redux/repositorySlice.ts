@@ -1,22 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Repository } from '../types/types';
-import { LIMIT } from '../api/constants';
+import { Repository, SortType } from '../types/types';
 import { fetchRepositories } from './thunks';
 
 export type RepositoriesState = {
   searchValue: string;
-  resultsPerPage: number;
   currentPage: number;
+  sortBy: SortType;
   hasMore: boolean;
   repositories: Repository[];
   isLoading: boolean;
   error: string;
+  [key: string]: string | SortType | number | boolean | Repository[];
 };
 
 const initialState: RepositoriesState = {
   searchValue: 'javascript',
-  resultsPerPage: LIMIT,
   currentPage: 1,
+  sortBy: SortType.StarsDesc,
   hasMore: true,
   repositories: [],
   isLoading: true,
@@ -27,9 +27,6 @@ export const repositoriesSlice = createSlice({
   name: 'repositories',
   initialState,
   reducers: {
-    setSearchValue: (state, action: PayloadAction<string>) => {
-      state.searchValue = action.payload;
-    },
     setSearchOptions: (
       state,
       action: PayloadAction<{
@@ -37,7 +34,7 @@ export const repositoriesSlice = createSlice({
         value: string;
       }>
     ) => {
-      // state[action.payload.name] = action.payload.value;
+      state[action.payload.name] = action.payload.value;
     },
     setCurrentPage: (state) => {
       state.currentPage += 1;
@@ -71,7 +68,6 @@ export const repositoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setSearchValue, setSearchOptions, setCurrentPage, resetPage } =
-  repositoriesSlice.actions;
+export const { setSearchOptions, setCurrentPage, resetPage } = repositoriesSlice.actions;
 
 export default repositoriesSlice.reducer;

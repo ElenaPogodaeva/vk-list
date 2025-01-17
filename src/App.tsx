@@ -3,17 +3,17 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRepositories } from './redux/thunks';
 import { setCurrentPage } from './redux/repositorySlice';
 import { RepositoryList } from './components/RepositoryList/RepositoryList';
-import SearchBar from './components/SearchBar/SearchBar';
+import { Search } from './components/Search/Search';
 
 function App() {
-  const { repositories, searchValue, currentPage, resultsPerPage, hasMore, isLoading, error } =
+  const { repositories, searchValue, currentPage, sortBy, hasMore, isLoading, error } =
     useAppSelector((state) => state.repositories);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchRepositories({ searchValue, resultsPerPage, currentPage }));
-  }, [searchValue, currentPage]);
+    dispatch(fetchRepositories({ searchValue, currentPage, sortBy }));
+  }, [searchValue, currentPage, sortBy]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="page">
-      <SearchBar />
+      <Search />
       <RepositoryList repositories={repositories} />
       {isLoading && <div>Loading...</div>}
       {error && <p>Error occured</p>}

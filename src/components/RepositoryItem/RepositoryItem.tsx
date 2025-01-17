@@ -7,7 +7,7 @@ type RepositoryItemProps = {
 };
 
 export function RepositoryItem({ repository }: RepositoryItemProps) {
-  const { full_name, description, language, stargazers_count, updated_at, html_url, owner } =
+  const { full_name, description, language, stargazers_count, pushed_at, html_url, owner } =
     repository;
 
   return (
@@ -27,7 +27,7 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
           <img src={starIcon} alt="Star" />
           {stargazers_count}
         </li>
-        <li>Updated on {new Date(updated_at).toLocaleDateString()}</li>
+        <li>Updated on {new Date(pushed_at).toLocaleDateString()}</li>
       </ul>
       <div className={style.itemBtns}>
         <button type="button" className={`button ${style.itemBtn}`}>

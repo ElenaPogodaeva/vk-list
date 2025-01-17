@@ -1,22 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { QueryParams } from '../types/types';
+import { QueryParams, SortType } from '../types/types';
 import { getRepositories } from '../api/api';
+import { LIMIT } from '../api/constants';
 
 type SearchOptions = {
   searchValue: string;
-  resultsPerPage: number;
+  sortBy: SortType;
   currentPage: number;
 };
 
 export const fetchRepositories = createAsyncThunk(
   'advertisements/fetchAdvertisements',
   async (searchOptions: SearchOptions, { rejectWithValue }) => {
-    const { searchValue, resultsPerPage, currentPage } = searchOptions;
+    const { searchValue, sortBy, currentPage } = searchOptions;
+
+    const [sort, order] = sortBy.split('-');
 
     const params: QueryParams = {
       q: searchValue,
+      sort,
+      order,
       page: currentPage.toString(),
-      per_page: resultsPerPage.toString(),
+      per_page: LIMIT.toString(),
     };
 
     try {
