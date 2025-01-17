@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
+import { fetchRepositories } from './redux/thunks';
+import { setCurrentPage } from './redux/repositorySlice';
+import { RepositoryList } from './components/RepositoryList/RepositoryList';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { repositories, searchValue, currentPage, resultsPerPage, hasMore, isLoading, error } =
+    useAppSelector((state) => state.repositories);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRepositories({ searchValue, resultsPerPage, currentPage }));
+  }, [searchValue, currentPage]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        !isLoading &&
+        hasMore &&
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.scrollHeight - 20
+      ) {
+        dispatch(setCurrentPage());
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLoading, hasMore]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="page">
+      <SearchBar />
+      <RepositoryList repositories={repositories} />
+      {isLoading && <div>Loading...</div>}
+      {error && <p>Error occured</p>}
+    </div>
+  );
 }
 
-export default App
+export default App;
