@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Repository, SortType } from '../types/types';
+import { RepositoryFormValues, Repository, SortType } from '../types/types';
 import { fetchRepositories } from './thunks';
 
 export type RepositoriesState = {
@@ -42,6 +42,21 @@ export const repositoriesSlice = createSlice({
     resetPage: (state) => {
       state.currentPage = 1;
     },
+    updateRepository(
+      state,
+      action: PayloadAction<{
+        id: string;
+        updatedValues: RepositoryFormValues;
+      }>
+    ) {
+      const { id, updatedValues } = action.payload;
+
+      const repository = state.repositories.find((item) => item.id === id) as Repository;
+
+      repository.full_name = updatedValues.full_name;
+      repository.description = updatedValues.description;
+      repository.language = updatedValues.language;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRepositories.pending, (state) => {
@@ -68,6 +83,7 @@ export const repositoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setSearchOptions, setCurrentPage, resetPage } = repositoriesSlice.actions;
+export const { setSearchOptions, setCurrentPage, resetPage, updateRepository } =
+  repositoriesSlice.actions;
 
 export default repositoriesSlice.reducer;

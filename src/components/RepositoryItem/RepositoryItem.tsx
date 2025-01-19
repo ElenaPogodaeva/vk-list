@@ -1,14 +1,40 @@
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
 import style from './RepositoryItem.module.scss';
-import { Repository } from '../../types/types';
+import { Repository, RepositoryFormValues } from '../../types/types';
 import starIcon from '../../assets/star.svg';
+import Modal from '../Modal/Modal';
+import RepositoryForm from '../RepositoryForm/RepositoryForm';
+import { updateRepository } from '../../redux/repositorySlice';
+import { useAppDispatch } from '../../redux/hooks';
 
 type RepositoryItemProps = {
   repository: Repository;
 };
 
 export function RepositoryItem({ repository }: RepositoryItemProps) {
-  const { full_name, description, language, stargazers_count, pushed_at, html_url, owner } =
+  const { id, full_name, description, language, stargazers_count, pushed_at, html_url, owner } =
     repository;
+
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const handleSubmit: SubmitHandler<RepositoryFormValues> = async (data) => {
+    const updatedValues = {
+      full_name: data.full_name,
+      description: data.description,
+      language: data.language,
+    };
+    dispatch(updateRepository({ id, updatedValues }));
+    setIsEdit(false);
+  };
+
+  const handleDelete = () => {
+    // dispatch(deleteRepository)
+    // setIsDelete(false);
+  };
 
   return (
     <div className={style.item}>
@@ -30,13 +56,26 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
         <li>Updated on {new Date(pushed_at).toLocaleDateString()}</li>
       </ul>
       <div className={style.itemBtns}>
-        <button type="button" className={`button ${style.itemBtn}`}>
+        <button type="button" className="button" onClick={() => setIsEdit(true)}>
           Edit
         </button>
-        <button type="button" className={`button ${style.itemBtn}`}>
+        <button type="button" className="button" onClick={() => setIsDelete(true)}>
           Delete
         </button>
       </div>
+      {isEdit && (
+        <Modal>
+          <RepositoryForm
+            onSubmit={handleSubmit}
+            onCancel={() => setIsEdit(false)}
+            values={{
+              full_name,
+              description,
+              language,
+            }}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

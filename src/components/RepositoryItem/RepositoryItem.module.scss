@@ -13,20 +13,6 @@
   transition: .3s;
 }
 
-.itemBtn {
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 400;
-  padding: 10px 15px;
-  color: #fff;
-  background: red;
-  border-radius: 4px;
-  transition: .3s;
-  &:hover {
-    background: #8C2828;
-  }
-}
-
 .itemHeader {
   display: flex;
   flex-wrap: wrap;
@@ -68,4 +54,8 @@
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+.modalText {
+  margin-bottom: 20px;
 }
