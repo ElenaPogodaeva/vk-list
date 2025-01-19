@@ -27,3 +27,9 @@ export enum SortType {
   UpdatedDesc = 'updated-desc',
   UpdatedAsc = 'updated-asc',
 }
+
+export type RepositoryFormValues = {
+  full_name: string;
+  description: string;
+  language: string;
+};

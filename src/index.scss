@@ -76,3 +76,16 @@ body {
   }
 }
 
+.button {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  padding: 10px 15px;
+  color: #fff;
+  background:red;
+  border-radius: 4px;
+  transition: .3s;
+  &:hover {
+    background: #8C2828;
+  }
+}

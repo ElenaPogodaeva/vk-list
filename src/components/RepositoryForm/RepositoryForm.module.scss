@@ -1,0 +1,30 @@
+.form {
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 600px; 
+  text-align: left;
+  border-radius: 4px;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 600;
+}
+
+.formInput {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.formError {
+  color: red;
+  margin-left: 10px;
+}
+
+.formBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
