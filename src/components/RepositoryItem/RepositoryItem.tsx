@@ -5,7 +5,7 @@ import { Repository, RepositoryFormValues } from '../../types/types';
 import starIcon from '../../assets/star.svg';
 import Modal from '../Modal/Modal';
 import RepositoryForm from '../RepositoryForm/RepositoryForm';
-import { updateRepository } from '../../redux/repositorySlice';
+import { deleteRepository, updateRepository } from '../../redux/repositorySlice';
 import { useAppDispatch } from '../../redux/hooks';
 
 type RepositoryItemProps = {
@@ -32,8 +32,8 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
   };
 
   const handleDelete = () => {
-    // dispatch(deleteRepository)
-    // setIsDelete(false);
+    dispatch(deleteRepository(id));
+    setIsDelete(false);
   };
 
   return (
@@ -74,6 +74,19 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
               language,
             }}
           />
+        </Modal>
+      )}
+      {isDelete && (
+        <Modal>
+          <p className={style.modalText}>Delete this repository?</p>
+          <div className={style.modalBtns}>
+            <button type="button" className="button" onClick={handleDelete}>
+              Delete
+            </button>
+            <button type="submit" className="button" onClick={() => setIsDelete(false)}>
+              Cancel
+            </button>
+          </div>
         </Modal>
       )}
     </div>

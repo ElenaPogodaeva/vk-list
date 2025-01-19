@@ -57,6 +57,9 @@ export const repositoriesSlice = createSlice({
       repository.description = updatedValues.description;
       repository.language = updatedValues.language;
     },
+    deleteRepository(state, action) {
+      state.repositories = state.repositories.filter((item) => item.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRepositories.pending, (state) => {
@@ -83,7 +86,7 @@ export const repositoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setSearchOptions, setCurrentPage, resetPage, updateRepository } =
+export const { setSearchOptions, setCurrentPage, resetPage, updateRepository, deleteRepository } =
   repositoriesSlice.actions;
 
 export default repositoriesSlice.reducer;
