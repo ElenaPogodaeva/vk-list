@@ -49,8 +49,8 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
       <p>{description}</p>
       <ul className={style.itemInfo}>
         <li>{language}</li>
-        <li className={style.star}>
-          <img src={starIcon} alt="Star" />
+        <li className={style.itemStar}>
+          <img src={starIcon} alt="" className={style.itemIcon}/>
           {stargazers_count}
         </li>
         <li>Updated on {new Date(pushed_at).toLocaleDateString()}</li>

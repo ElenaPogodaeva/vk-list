@@ -36,8 +36,8 @@ function App() {
     <div className="page">
       <Search />
       <RepositoryList repositories={repositories} />
-      {isLoading && <div>Loading...</div>}
-      {error && <p>Error occured</p>}
+      {isLoading && <p className="message">Loading...</p>}
+      {error && <p className="message">Error occured</p>}
     </div>
   );
 }

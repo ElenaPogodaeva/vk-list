@@ -35,7 +35,7 @@
 .itemTitle {
   font-size: 24px;
   font-weight: 600;
-  color: rgb(9, 105, 218);
+  color: #0969da;
   &:hover {
     text-decoration: underline;
   }
@@ -50,10 +50,15 @@
   align-items: center;
 }
 
-.star {
+.itemStar {
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+.itemIcon {
+  width: 20px;
+  height: 20px;
 }
 
 .modalText {
