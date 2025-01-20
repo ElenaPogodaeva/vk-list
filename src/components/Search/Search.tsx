@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import style from './Search.module.scss';
 import { resetPage, setSearchOptions } from '../../redux/repositorySlice';
-import { SortType } from '../../types/types';
+import { SortType } from '../../types';
 
 function Search() {
   const { sortBy } = useAppSelector((state) => state.repositories);

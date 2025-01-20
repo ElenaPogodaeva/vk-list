@@ -1,4 +1,4 @@
-import { QueryParams } from '../types/types';
+import { QueryParams } from '../types';
 import { BASE_URL } from './constants';
 
 export const getRepositories = async (params: QueryParams) => {

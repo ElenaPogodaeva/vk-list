@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import style from './RepositoryForm.module.scss';
-import { RepositoryFormValues } from '../../types/types';
+import { RepositoryFormValues } from '../../types';
 
 type RepositoryFormProps = {
   onSubmit: (data: RepositoryFormValues) => void;

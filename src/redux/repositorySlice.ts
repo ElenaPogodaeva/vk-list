@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RepositoryFormValues, Repository, SortType } from '../types/types';
+import { RepositoryFormValues, Repository, SortType } from '../types';
 import { fetchRepositories } from './thunks';
 
 export type RepositoriesState = {

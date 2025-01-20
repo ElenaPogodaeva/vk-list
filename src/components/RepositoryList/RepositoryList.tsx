@@ -1,4 +1,4 @@
-import { Repository } from '../../types/types';
+import { Repository } from '../../types';
 import RepositoryItem from '../RepositoryItem/RepositoryItem';
 import style from './RepositoryList.module.scss';
 

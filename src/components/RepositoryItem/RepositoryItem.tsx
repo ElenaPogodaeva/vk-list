@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import style from './RepositoryItem.module.scss';
-import { Repository, RepositoryFormValues } from '../../types/types';
+import { Repository, RepositoryFormValues } from '../../types';
 import starIcon from '../../assets/star.svg';
 import Modal from '../Modal/Modal';
 import RepositoryForm from '../RepositoryForm/RepositoryForm';

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { QueryParams, SortType } from '../types/types';
+import { QueryParams, SortType } from '../types';
 import { getRepositories } from '../api/api';
 import { LIMIT } from '../api/constants';
 
