@@ -5,7 +5,7 @@ import style from './Search.module.scss';
 import { resetPage, setSearchOptions } from '../../redux/repositorySlice';
 import { SortType } from '../../types/types';
 
-export function Search() {
+function Search() {
   const { sortBy } = useAppSelector((state) => state.repositories);
   const dispatch = useAppDispatch();
 
@@ -43,3 +43,5 @@ export function Search() {
     </div>
   );
 }
+
+export default Search;

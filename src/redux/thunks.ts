@@ -12,9 +12,13 @@ type SearchOptions = {
 export const fetchRepositories = createAsyncThunk(
   'advertisements/fetchAdvertisements',
   async (searchOptions: SearchOptions, { rejectWithValue }) => {
-    const { searchValue, sortBy, currentPage } = searchOptions;
+    let { searchValue, sortBy, currentPage } = searchOptions;
 
     const [sort, order] = sortBy.split('-');
+
+    if (!searchValue) {
+      searchValue = 'javascript';
+    }
 
     const params: QueryParams = {
       q: searchValue,

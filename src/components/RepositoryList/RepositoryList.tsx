@@ -1,12 +1,12 @@
 import { Repository } from '../../types/types';
-import { RepositoryItem } from '../RepositoryItem/RepositoryItem';
+import RepositoryItem from '../RepositoryItem/RepositoryItem';
 import style from './RepositoryList.module.scss';
 
 type RepositoryListProps = {
   repositories: Repository[];
 };
 
-export function RepositoryList({ repositories }: RepositoryListProps) {
+function RepositoryList({ repositories }: RepositoryListProps) {
   return (
     <div className={style.cards}>
       {Boolean(repositories.length) &&
@@ -14,3 +14,5 @@ export function RepositoryList({ repositories }: RepositoryListProps) {
     </div>
   );
 }
+
+export default RepositoryList;

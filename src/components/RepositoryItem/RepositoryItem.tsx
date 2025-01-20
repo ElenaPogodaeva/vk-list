@@ -12,7 +12,7 @@ type RepositoryItemProps = {
   repository: Repository;
 };
 
-export function RepositoryItem({ repository }: RepositoryItemProps) {
+function RepositoryItem({ repository }: RepositoryItemProps) {
   const { id, full_name, description, language, stargazers_count, pushed_at, html_url, owner } =
     repository;
 
@@ -50,7 +50,7 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
       <ul className={style.itemInfo}>
         <li>{language}</li>
         <li className={style.itemStar}>
-          <img src={starIcon} alt="" className={style.itemIcon}/>
+          <img src={starIcon} alt="" className={style.itemIcon} />
           {stargazers_count}
         </li>
         <li>Updated on {new Date(pushed_at).toLocaleDateString()}</li>
@@ -92,3 +92,5 @@ export function RepositoryItem({ repository }: RepositoryItemProps) {
     </div>
   );
 }
+
+export default RepositoryItem;

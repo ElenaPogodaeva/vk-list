@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRepositories } from './redux/thunks';
 import { setCurrentPage } from './redux/repositorySlice';
-import { RepositoryList } from './components/RepositoryList/RepositoryList';
-import { Search } from './components/Search/Search';
+import RepositoryList from './components/RepositoryList/RepositoryList';
+import Search from './components/Search/Search';
 
 function App() {
   const { repositories, searchValue, currentPage, sortBy, hasMore, isLoading, error } =
